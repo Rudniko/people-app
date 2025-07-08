@@ -13,21 +13,6 @@ import java.time.LocalDate;
 @PersonSubType("employee")
 public class EmployeeRequestCommand extends PersonRequestCommand {
 
-    @PESEL
-    @NotBlank
-    private String pesel;
-    @NotBlank
-    private String firstName;
-    @NotBlank
-    private String lastName;
-    @NotNull
-    @Positive
-    private Double height;
-    @NotNull
-    @Positive
-    private Double weight;
-    @NotBlank
-    private String email;
     @NotNull
     private LocalDate startOfEmployment;
     @NotBlank
@@ -36,34 +21,73 @@ public class EmployeeRequestCommand extends PersonRequestCommand {
     @Positive
     private BigDecimal currentSalary;
 
-    @Override
     public String getType() {
         return "employee";
     }
 
     @Override
     public String getPesel() {
-        return pesel;
+        return super.getPesel();
     }
 
+    @Override
+    public void setType(String type) {
+        super.setType(type);
+    }
+
+    @Override
+    public void setPesel(String pesel) {
+        super.setPesel(pesel);
+    }
+
+    @Override
     public String getFirstName() {
-        return firstName;
+        return super.getFirstName();
     }
 
+    @Override
+    public void setFirstName(String firstName) {
+        super.setFirstName(firstName);
+    }
+
+    @Override
     public String getLastName() {
-        return lastName;
+        return super.getLastName();
     }
 
+    @Override
+    public void setLastName(String lastName) {
+        super.setLastName(lastName);
+    }
+
+    @Override
     public Double getHeight() {
-        return height;
+        return super.getHeight();
     }
 
+    @Override
+    public void setHeight(Double height) {
+        super.setHeight(height);
+    }
+
+    @Override
     public Double getWeight() {
-        return weight;
+        return super.getWeight();
     }
 
+    @Override
+    public void setWeight(Double weight) {
+        super.setWeight(weight);
+    }
+
+    @Override
     public String getEmail() {
-        return email;
+        return super.getEmail();
+    }
+
+    @Override
+    public void setEmail(String email) {
+        super.setEmail(email);
     }
 
     public LocalDate getStartOfEmployment() {
@@ -76,30 +100,6 @@ public class EmployeeRequestCommand extends PersonRequestCommand {
 
     public BigDecimal getCurrentSalary() {
         return currentSalary;
-    }
-
-    public void setPesel(String pesel) {
-        this.pesel = pesel;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setHeight(Double height) {
-        this.height = height;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public void setStartOfEmployment(LocalDate startOfEmployment) {

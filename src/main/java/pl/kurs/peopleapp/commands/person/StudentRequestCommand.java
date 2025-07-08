@@ -1,11 +1,9 @@
 package pl.kurs.peopleapp.commands.person;
 
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
-import org.hibernate.validator.constraints.pl.PESEL;
 import pl.kurs.peopleapp.annotations.PersonSubType;
 
 import java.math.BigDecimal;
@@ -13,22 +11,6 @@ import java.math.BigDecimal;
 @PersonSubType("student")
 public class StudentRequestCommand extends PersonRequestCommand {
 
-
-    @PESEL
-    @NotBlank
-    private String pesel;
-    @NotBlank
-    private String firstName;
-    @NotBlank
-    private String lastName;
-    @NotNull
-    @Positive
-    private Double height;
-    @NotNull
-    @Positive
-    private Double weight;
-    @NotBlank
-    private String email;
     @NotBlank
     private String universityName;
     @NotNull
@@ -40,34 +22,90 @@ public class StudentRequestCommand extends PersonRequestCommand {
     @PositiveOrZero
     private BigDecimal scholarship;
 
-    @Override
+
     public String getType() {
         return "student";
     }
 
     @Override
     public String getPesel() {
-        return pesel;
+        return super.getPesel();
     }
 
+    @Override
+    public void setType(String type) {
+        super.setType(type);
+    }
+
+    @Override
+    public void setPesel(String pesel) {
+        super.setPesel(pesel);
+    }
+
+    @Override
     public String getFirstName() {
-        return firstName;
+        return super.getFirstName();
     }
 
+    @Override
+    public void setFirstName(String firstName) {
+        super.setFirstName(firstName);
+    }
+
+    @Override
     public String getLastName() {
-        return lastName;
+        return super.getLastName();
     }
 
+    @Override
+    public void setLastName(String lastName) {
+        super.setLastName(lastName);
+    }
+
+    @Override
     public Double getHeight() {
-        return height;
+        return super.getHeight();
     }
 
+    @Override
+    public void setHeight(Double height) {
+        super.setHeight(height);
+    }
+
+    @Override
     public Double getWeight() {
-        return weight;
+        return super.getWeight();
     }
 
+    @Override
+    public void setWeight(Double weight) {
+        super.setWeight(weight);
+    }
+
+    @Override
     public String getEmail() {
-        return email;
+        return super.getEmail();
+    }
+
+    @Override
+    public void setEmail(String email) {
+        super.setEmail(email);
+    }
+
+    public void setUniversityName(String universityName) {
+        this.universityName = universityName;
+    }
+
+    public void setCurrentStudyYear(Integer currentStudyYear) {
+        this.currentStudyYear = currentStudyYear;
+    }
+
+    public void setStudyField(String studyField) {
+        this.studyField = studyField;
+    }
+
+    public void setScholarship(BigDecimal scholarship) {
+        this.scholarship = scholarship;
     }
 
     public String getUniversityName() {
@@ -86,43 +124,4 @@ public class StudentRequestCommand extends PersonRequestCommand {
         return scholarship;
     }
 
-    public void setPesel(String pesel) {
-        this.pesel = pesel;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setHeight(Double height) {
-        this.height = height;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setUniversityName(String universityName) {
-        this.universityName = universityName;
-    }
-
-    public void setCurrentStudyYear(Integer currentStudyYear) {
-        this.currentStudyYear = currentStudyYear;
-    }
-
-    public void setStudyField(String studyField) {
-        this.studyField = studyField;
-    }
-
-    public void setScholarship(BigDecimal scholarship) {
-        this.scholarship = scholarship;
-    }
 }
