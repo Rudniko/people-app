@@ -1,0 +1,12 @@
+databaseChangeLog:
+    - changeSet:
+          id: pesel_birthdate_h2
+          author: Patryk Rudnicki
+          context: h2
+          changes:
+              - sql:
+                    dbms: h2
+                    sql: CREATE ALIAS IF NOT EXISTS pesel_birthdate FOR "pl.kurs.peopleapp.h2functions.PeselFunctions.pesel_birthdate";
+
+
+

@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: pesel_birthdate
+      author: Patryk Rudnicki
+      comment: UDF – bezpieczna data urodzenia z PESEL
+      changes:
+        - sql:
+            splitStatements: false
+            sql: |
+              DROP FUNCTION IF EXISTS pesel_birthdate;
+        - sql:
+            splitStatements: false
+            sql: |
+              CREATE FUNCTION pesel_birthdate(p CHAR(11))
+              RETURNS DATE DETERMINISTIC
+              RETURN
+                IF(CHAR_LENGTH(p) <> 11
+                   OR SUBSTRING(p,3,2) = '00'
+                   OR SUBSTRING(p,5,2) = '00',
+                   NULL,
+                   STR_TO_DATE(
+                     CONCAT(
+                       1900 + (SUBSTRING(p,3,2)+0) DIV 20 * 100
+                            + (SUBSTRING(p,1,2)+0),
+                       LPAD((SUBSTRING(p,3,2)+0) % 20, 2, '0'),
+                       SUBSTRING(p,5,2)
+                     ),
+                     '%Y%m%d'));
+      rollback:
+        - sql: |
+            DROP FUNCTION IF EXISTS pesel_birthdate;

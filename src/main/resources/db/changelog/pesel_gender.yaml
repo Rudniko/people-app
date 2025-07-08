@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: pesel_gender
+      author: Patryk Rudnicki
+      comment: UDF – płeć z 10-tej cyfry PESEL
+      changes:
+        - sql:
+            splitStatements: false
+            stripComments: false
+            sql: |
+              DROP FUNCTION IF EXISTS pesel_gender;
+        - sql:
+            splitStatements: false
+            stripComments: false
+            sql: |
+              CREATE FUNCTION pesel_gender(p CHAR(11))
+              RETURNS CHAR(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
+              DETERMINISTIC
+              NO SQL
+              RETURN IF ((SUBSTRING(p,10,1)+0) % 2 = 1,'M','F');
+      rollback:
+        - sql: |
+            DROP FUNCTION IF EXISTS pesel_gender;

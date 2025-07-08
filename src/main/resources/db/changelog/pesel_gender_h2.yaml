@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: pesel_gender_h2
+      author: Patryk Rudnicki
+      context: h2
+      changes:
+        - sql:
+            sql: >
+              CREATE ALIAS IF NOT EXISTS pesel_gender FOR "pl.kurs.peopleapp.h2functions.PeselFunctions.pesel_gender";

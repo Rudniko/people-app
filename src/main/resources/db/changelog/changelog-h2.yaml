@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/pesel_birthdate_h2.yaml
+      context: h2
+  - include:
+      file: db/changelog/pesel_gender_h2.yaml
+      context: h2
